@@ -1,0 +1,14 @@
+﻿
+@{
+    ViewBag.Title = "MeritIndex";
+}
+
+<h2>MeritIndex</h2>
+
+<button onclick="window.location.href='@Url.Action("meritlist", "Student")';">
+    Generate Merit List
+</button>
+<div class="col-lg-12">
+    @{Html.RenderAction("MeritIndexView");}
+</div>
+

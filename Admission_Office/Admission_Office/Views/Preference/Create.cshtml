@@ -1,0 +1,94 @@
+﻿@model Admission_Office.Models.Preferences
+
+@{
+    ViewBag.Title = "ads_prefs";
+}
+
+<h2>ads_prefs</h2>
+
+@using (Html.BeginForm())
+{
+    @Html.AntiForgeryToken()
+    
+
+
+    List<SelectListItem> llist = new List<SelectListItem>();
+    foreach (var item in Model.dps)
+    {
+        SelectListItem i = new SelectListItem();
+        i.Text = item.Name;
+        i.Value = item.Name;
+        llist.Add(i);
+    }
+
+
+    <div class="form-horizontal">
+        <h4>Preferences</h4>
+        <hr />
+        @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+        <div class="row">
+            <div class="col-sm-2">
+        <h4 style="color:#0094ff">
+                 1 . Preference: </h4>
+                </div>
+                <div class="col-sm-10"><h4 style="color:#ff6a00 " >@Session["1stpref"]</h4>
+            </div>
+            </div>
+                 @{
+                     int t = 0;
+                 }
+                @for (int d = 0; d < Model.dps.Count - 1; d++)
+                {
+
+                    if (t == 0)
+                    {
+                        t = t + 2;
+                    }
+                    else if (t >= 2)
+                    {
+                        t++;
+                    }
+                    <div class="form-group">
+                        <div class="col-md-2">
+                            <h4 style="color:#0094ff">
+                                
+                                @t.ToString() . Preference<h4>
+                        </div>
+                        @{ 
+                            string name = "pref" + d.ToString();
+                        }
+                        <div class="col-md-10" style="margin-top:10px;" >
+                          
+                                    <select name=@name title="Choose a department...">
+                                        
+                                            @for (int f = 0; f < Model.dps.Count; f++)
+                                            {
+                                                
+                                                    string dpname = Model.dps[f].Name;
+                                                
+
+                                                <option>
+                                                    @dpname
+                                                </option>
+
+                                                        }
+                                                    
+                                    </select>
+                        </div>
+                       
+                    </div>
+                                    }
+
+
+
+                <div class="form-group">
+                    <div class="col-md-offset-2 col-md-10">
+                        <input type="submit" value="Create" class="btn btn-default" />
+                    </div>
+                </div>
+    </div>
+                                    }
+
+<div>
+    @Html.ActionLink("Back to List", "Index")
+</div>

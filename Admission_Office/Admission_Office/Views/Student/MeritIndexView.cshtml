@@ -1,0 +1,110 @@
+﻿@model IEnumerable<Admission_Office.Models.Student>
+
+@{
+    ViewBag.Title = "Final Merit List";
+}
+
+<h2>Merit List</h2>
+<h3>a Confirmation Email is sent to all selected canddates...</h3>
+
+<p>
+    <button class="btn btn-group" onclick="window.location.href='@Url.Action("meritlist", "Student")';">Generate a pdf list of Selected Candidates</button>
+</p>
+
+<style>
+    body {
+        background-color: #e3ee9e;
+    }
+</style>
+
+@if (Model.Count() == 0)
+{
+<h1>No </h1>}
+else
+{
+<table class="table">
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.ARN)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Name)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Father_Name)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.CNIC)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Email)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Phone)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.DOB)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Matric_Marks)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Fsc_Marks)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.ECAT_Marks)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.department)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.aggregate)
+        </th>
+        <th></th>
+    </tr>
+
+@foreach (var item in Model)
+{
+    <tr>
+        <td>
+            @Html.DisplayFor(modelItem => item.ARN)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Name)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Father_Name)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.CNIC)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Email)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Phone)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.DOB)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Matric_Marks)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Fsc_Marks)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.ECAT_Marks)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.department)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.aggregate)
+        </td>
+     
+    </tr>
+}
+
+</table>
+}

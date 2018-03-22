@@ -1,0 +1,83 @@
+﻿@model IEnumerable<Admission_Office.Models.Department>
+
+@{
+    ViewBag.Title = "Index";
+}
+
+<p>
+    <button style="margin-top:50px;" class="btn btn-primary" onclick="window.location.href='@Url.Action("Create", "Student")';">Enter new Student+ &rArr;</button>
+    <button style="margin-top:50px;" class="btn btn-link" onclick="window.location.href='@Url.Action("Index", "Student")';">See your Entered stuents here &rArr;</button>
+</p>
+
+<style>
+    body{
+        background-color:#e3ee9e;
+    }
+
+
+
+</style>
+
+<h2  >Your Entered Departments</h2>
+@if ((int)Session["len"] == 0)
+{
+    <h4>No any Departments</h4>
+}
+else
+{
+<table class="table" >
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.Name)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.seats)
+        </th>
+        <td>
+            <h5 style="font-weight:bold;position:relative;bottom:8px;" >Remaining Seats</h5>
+        </td>
+        <th>
+            @Html.DisplayNameFor(model => model.Aggregate)
+        </th>
+       
+        <th></th>
+    </tr>
+  
+       @foreach (var item in Model)
+       {
+           int t = 0;
+           if (item.seat_counter < item.seats)
+           {
+               t = item.seats - item.seat_counter;
+           }
+             <tr>
+      
+                 <td>
+                      @Html.DisplayFor(modelItem => item.Name)
+                 </td>
+                 <td>
+                       @Html.DisplayFor(modelItem => item.seats)
+                 </td>
+                 <td>
+                     <h5 style="position:relative;bottom:8px;" >@t</h5>
+                 </td>
+                     <td>
+                         @Html.DisplayFor(modelItem => item.Aggregate)
+                  </td>
+                 
+                 <td>
+                    
+                     <button class="btn btn-link" onclick="window.location.href='@Url.Action("deletedept", "Department",new { id=item.Name })';" >Delete</button>
+                 </td>
+          </tr>
+     }
+    
+
+
+</table>
+
+}
+<p>
+    <button  class="btn btn-info" onclick="window.location.href='@Url.Action("MakeDepartment", "Department")';">Enter a new Department +</button>
+</p>
+
